@@ -32,7 +32,6 @@ function flipCard() {
     if(lockBoard) return;            
     if(this === firstCard) return;     
   this.classList.add('js_flip');
-  
   if(!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
