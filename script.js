@@ -28,8 +28,7 @@ let matched = 0;
 let unMatched = 0;
 
 
-function flipCard(e) {
-  e.preventDefault;
+function flipCard() {
     if(lockBoard) return;            
     if(this === firstCard) return;     
   this.classList.add('js_flip');
