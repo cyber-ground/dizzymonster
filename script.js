@@ -72,7 +72,7 @@ function matchedCards() {
   firstCard.removeEventListener('click', flipCard);
   secondCard.removeEventListener('click', flipCard);
   matched++;
-  setTimeout(() => { matchedHowl.play()}, 500);
+  setTimeout(() => { matchedHowl.play()}, 300);
   gameClear();
 }
 
