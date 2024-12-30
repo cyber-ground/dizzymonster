@@ -12,16 +12,25 @@ const startBtn = document.querySelector('.start-btn');
 const gameClearMessage = document.querySelector('.game-clear');
 const gameOverMessage = document.querySelector('.game-over');
 const cards = document.querySelectorAll('.memory-card');
-  startBtn.classList.add('js_visible');
+let hasFlippedCard, lockBoard; 
+let firstCard, secondCard;
+let matched,unMatched;
 
-  if(!startBtn.classList.contains('js_visible')) {
+var bgmHowl = new Howl({src: ['mp3/bgm.mp3'], loop:true, volume: 0.05});
+var flipCardHowl = new Howl({src: ['mp3/flipCard.mp3'], volume: 0.5});
+var unmatchedHowl = new Howl({src: ['mp3/unmatched.mp3'], volume: 0.5});
+var matchedHowl = new Howl({src: ['mp3/matched.mp3'], volume: 0.5});
+var gameClearHowl = new Howl({src: ['mp3/gameClear.mp3'], volume: 0.1});
+var gameOverHowl = new Howl({src: ['mp3/gameOver.mp3'], volume: 0.1});
+
+  startBtn.classList.add('js_visible'); //*>
+  if(!startBtn.classList.contains('js_visible')) { //*>
     cards.forEach(card => {
       card.addEventListener('click', flipCard);
     });
   }
 
   startBtn.addEventListener('click', function () {
-    // window.location.reload();
     cards.forEach(card => {
       card.classList.remove('js_flip');
       card.addEventListener('click', flipCard);
@@ -35,30 +44,13 @@ const cards = document.querySelectorAll('.memory-card');
     lockBoard = false;
     matched = 0;
     unMatched = 0;
-    gameStart = false;
     bgmHowl.play();
-    gameStart = true;
   });
-
-let hasFlippedCard = false; 
-let lockBoard = false;
-let firstCard, secondCard;
-let matched = 0;
-let unMatched = 0;
-let gameStart = false;
-
-var bgmHowl = new Howl({src: ['mp3/bgm.mp3'], loop:true, volume: 0.05});
-var flipCardHowl = new Howl({src: ['mp3/firstCard.mp3'], volume: 0.5});
-var unmatchedHowl = new Howl({src: ['mp3/unmatched.mp3'], volume: 0.5});
-var matchedHowl = new Howl({src: ['mp3/matched.mp3'], volume: 0.5});
-var gameClearHowl = new Howl({src: ['mp3/gameClear.mp3'], volume: 0.1});
-var gameOverHowl = new Howl({src: ['mp3/gameOver.mp3'], volume: 0.1});
 
 function flipCard() {
     if(lockBoard) return;            
     if(this === firstCard) return;     
   this.classList.add('js_flip');
-  // if(!gameStart) { bgmHowl.play(); gameStart = true}
   flipCardHowl.play();
   if(!hasFlippedCard) {
     hasFlippedCard = true;
@@ -131,7 +123,7 @@ function disableCards() {
   cards.forEach(card => {                       
     card.removeEventListener('click', flipCard);
   });
-} // GAME CLEAR. GAME OVER.時に クリックを解除!
+} 
 
 function shuffleCards() {
   const number = [];
@@ -149,7 +141,7 @@ function shuffleCards() {
     // console.log(orderNumber);
   });
 }
-shuffleCards();
+
 
 
 //---------------------------------------------------------------------------------------------------
