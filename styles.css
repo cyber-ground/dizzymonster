@@ -8,6 +8,10 @@
   src: local("Secular One"), local("Secular-One"), url("font/Secular-One.ttf") format("truetype");
   font-display: swap;
 }
+html {
+  overscroll-behavior-y: none;
+}
+
 body {
   height: 100dvh;
   display: flex;
@@ -112,7 +116,6 @@ body {
   .memory-game .memory-card .front-face,
   .memory-game .memory-card .back-face {
     padding: 5px;
-    object-fit: initial;
   }
 }
 .memory-game .memory-card .front-face {

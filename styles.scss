@@ -18,9 +18,12 @@
 
 
 //-------------------------------------------------------------------------
-//                          --- DIZZY MONSTER ---
+//*                          --- DIZZY MONSTER ---
 //--------------------------------------------------------------------
 
+html {
+  overscroll-behavior-y: none;
+}
 
 body {
   height: 100dvh;
@@ -122,7 +125,6 @@ body {
       }
       @media (min-width:765px){
         padding: 5px;
-        object-fit: initial;
       }
     }
     .front-face {
