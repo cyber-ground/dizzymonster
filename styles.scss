@@ -21,16 +21,11 @@
 //*                          --- DIZZY MONSTER ---
 //--------------------------------------------------------------------
 
-html {
-  overscroll-behavior-y: none;
-}
-
 body {
   height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: rgb(221, 197, 238);
   background-color: rgb(218, 218, 218);
   overflow: hidden;
 }
@@ -39,7 +34,7 @@ body {
   font-family: 'Righteous';
   position: absolute;
   z-index: 1;
-  font-size: 2.8rem; // before change 2.5
+  font-size: 2.8rem; 
   font-weight: bold;
   letter-spacing: 1px;
   text-shadow: 3px 3px 0 #fff, 3px -3px 0 #fff,

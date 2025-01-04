@@ -8,10 +8,6 @@
   src: local("Secular One"), local("Secular-One"), url("font/Secular-One.ttf") format("truetype");
   font-display: swap;
 }
-html {
-  overscroll-behavior-y: none;
-}
-
 body {
   height: 100dvh;
   display: flex;
