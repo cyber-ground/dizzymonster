@@ -37,22 +37,26 @@ startBtn.addEventListener('touchstart', (e) => {
   startBtn.click();
 });
 
-const imgs = document.querySelectorAll('img');
+  const imgs = document.querySelectorAll('img');
 imgs.forEach(img => {
   img.addEventListener('touchstart', (e) => {
     if(startGame) {
-      if(!touch) { e.stopPropagation()}
-      touch = true;
+      if(touch) return;
+      if(touch) { e.preventDefault()}
+      if(!touch) { touch = true; e.stopPropagation()}
     }
   });
-  img.addEventListener('mousedown', () => {
-    touch = true;
-    setTimeout(() => { touch = false}, 100);
+
+  img.addEventListener('mousedown', (e) => {
+    touch = true; 
+    img.style.pointerEvents = 'none';
+    setTimeout(() => { img.style.pointerEvents = 'all'}, 500);
   });
   img.addEventListener('touchend', () => {
-    touch = false
+    setTimeout(() => { touch = false}, 150);
   });
 });
+
 
 //* ------------------------------------
 
@@ -123,6 +127,8 @@ function gameClear() {
       gameClearMessage.classList.add('js_visible');
       disableCards();
       bgmHowl.stop();
+      startGame = false;
+      firstCard = null; //*
       setTimeout(() => { gameClearHowl.play()}, 800);
       setTimeout(() => {
         startBtn.classList.add('js_visible');
@@ -136,9 +142,10 @@ function gameOver() {
   disableCards();
   bgmHowl.stop();
   gameOverHowl.play();
+  startGame = false;
   setTimeout(() => {
     startBtn.classList.add('js_visible');
-  }, 1500);
+  }, 2600);
 }
 
 function gameOverCounter() {

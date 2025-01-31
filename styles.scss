@@ -116,7 +116,6 @@ body {
         // padding: 0px; 
         position: absolute;
         border-radius: 5px;
-        background-color: rgb(191, 191, 191);
         background-color: rgb(185, 63, 255);
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;  // 必ず img に添付する
@@ -156,7 +155,7 @@ body {
   // transition: transform .3s;
 }
 
-.memory-card.js_flip {          // クラスのつけ方に疑問が残る!
+.memory-card.js_flip { // クラスのつけ方に疑問が残る!
   transform: rotateY(180deg); 
   transform: rotateY(180deg) rotateX(50deg); 
 }

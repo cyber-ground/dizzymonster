@@ -104,7 +104,6 @@ body {
   height: 100%;
   position: absolute;
   border-radius: 5px;
-  background-color: rgb(191, 191, 191);
   background-color: rgb(185, 63, 255);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
