@@ -51,8 +51,12 @@ body {
   margin-top: 0px;
   opacity: 0.5;
   visibility: hidden;
+  transition: margin-top 0.3s;
 }
 .start-btn.active {
+  margin-top: 90px;
+}
+.start-btn.active.menubarHidden {
   margin-top: 100px;
 }
 

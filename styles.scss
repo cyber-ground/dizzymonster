@@ -64,7 +64,11 @@ body {
   margin-top: 0px; 
   opacity: 0.5;
   visibility: hidden;
+  transition: margin-top .3s;
   &.active {
+    margin-top: 90px;
+  }
+  &.active.menubarHidden {
     margin-top: 100px;
   }
 }
@@ -86,7 +90,6 @@ body {
     height: 95%; 
     display: flex;
     flex-wrap: wrap;
-    // margin: 10px auto;
     -webkit-perspective: 1000px;
     perspective: 1000px;  // 必ず container に添付する
     .memory-card {  // img-wrapper card.

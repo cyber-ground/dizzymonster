@@ -1,6 +1,7 @@
 'use strict';
 
-
+import {console_color,console_red,console_orange,console_yellow,console_green,
+  console_blue,console_purple,console_magenta,console_cyan} from './logColor.js';
 
 //----------------------------------------------------------------------------------------------
 //*                               ----- DIZZY MONSTER -----
@@ -12,11 +13,17 @@ const gameClearMessage = document.querySelector('.game-clear');
 const gameOverMessage = document.querySelector('.game-over');
 const container = document.querySelector('.container');
 const cards = document.querySelectorAll('.memory-card');
+const mobile = navigator.userAgent.match(/iPhone|Android.+Mobile/);
+let portrait = window.matchMedia('(orientation: portrait)').matches;
 let hasFlippedCard, lockBoard; 
 let firstCard, secondCard;
 let matched,unMatched;
 let touch = false;
 let startGame = false;
+let defaultHeight = innerHeight;
+let orientation = portrait ? 'portrait' : 'landscape';
+let lastOrientation = orientation;
+let menubar;
 var bgmHowl = new Howl({src: ['mp3/bgm.mp3'], loop:true, volume: 0.05});
 var flipCardHowl = new Howl({src: ['mp3/flipCard.mp3'], volume: 0.5});
 var unmatchedHowl = new Howl({src: ['mp3/unmatched.mp3'], volume: 0.5});
@@ -41,14 +48,10 @@ startBtn.addEventListener('touchstart', (e) => {
 imgs.forEach(img => {
   img.addEventListener('touchstart', (e) => {
     if(startGame) {
-      if(touch) return;
-      if(touch) { e.preventDefault()}
       if(!touch) { touch = true; e.stopPropagation()}
     }
   });
-
-  img.addEventListener('mousedown', (e) => {
-    touch = true; 
+  img.addEventListener('mousedown', () => {
     img.style.pointerEvents = 'none';
     setTimeout(() => { img.style.pointerEvents = 'all'}, 500);
   });
@@ -56,7 +59,6 @@ imgs.forEach(img => {
     setTimeout(() => { touch = false}, 150);
   });
 });
-
 
 //* ------------------------------------
 
@@ -128,7 +130,7 @@ function gameClear() {
       disableCards();
       bgmHowl.stop();
       startGame = false;
-      firstCard = null; //*
+      firstCard = null;
       setTimeout(() => { gameClearHowl.play()}, 800);
       setTimeout(() => {
         startBtn.classList.add('js_visible');
@@ -177,7 +179,28 @@ function shuffleCards() {
   });
 }
 
+function detectMenubarStatus() {
+  if(mobile) {
+    if(innerHeight > defaultHeight) { 
+      menubar = false;
+      startBtn.classList.add('menubarHidden');
+    } else if(innerHeight === defaultHeight) {
+      menubar = true;
+      startBtn.classList.remove('menubarHidden');
+    }	
+  } else { startBtn.classList.add('menubarHidden')}
+} detectMenubarStatus();
 
+window.addEventListener('resize', () => {
+  portrait = window.matchMedia('(orientation: portrait)').matches;
+  orientation = portrait ? 'portrait' : 'landscape';
+  if(orientation === lastOrientation) { detectMenubarStatus()}
+  if(orientation !== lastOrientation && menubar) {
+    defaultHeight = innerHeight;
+    detectMenubarStatus();
+  }
+  lastOrientation = orientation;
+});
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------

@@ -13,6 +13,7 @@
   -webkit-user-select: none;
   overscroll-behavior-y: none;
   touch-action: manipulation;
+  touch-action: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
 }
