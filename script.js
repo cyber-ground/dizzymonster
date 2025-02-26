@@ -24,7 +24,7 @@ let defaultHeight = innerHeight;
 let orientation = portrait ? 'portrait' : 'landscape';
 let lastOrientation = orientation;
 let menubar;
-var bgmHowl = new Howl({src: ['mp3/bgm.mp3'], loop:true, volume: 0.2});
+var bgmHowl = new Howl({src: ['mp3/bgm.mp3'], loop:true, volume: 0.1});
 var flipCardHowl = new Howl({src: ['mp3/flipCard.mp3'], volume: 0.5});
 var unmatchedHowl = new Howl({src: ['mp3/unmatched.mp3'], volume: 0.5});
 var matchedHowl = new Howl({src: ['mp3/matched.mp3'], volume: 0.5});
